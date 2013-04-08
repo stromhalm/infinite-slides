@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		
+		<script type="text/javascript" src="assets/jquery/jquery.min.js"></script>
+		
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+		
+		<link href="assets/css/present.css" rel="stylesheet" type="text/css" />
+		
+		<title>Infinite Slides</title>
+		
+		<script type="text/javascript">
+
+$(document).ready(function(){
+	
+	//Attach it to the window so we can control the function from another window
+	window.self.nextSlide = function nextSlide(text){
+		if($(".slide1").hasClass("active")){
+			
+			$(".slide1").removeClass("active");
+			$(".slide2").addClass("active");
+			
+			$(".slide2 div").html(text);
+			hideSlide($(".slide1"));
+			showSlide($(".slide2"));
+			
+		} else {
+			
+			$(".slide2").removeClass("active");
+			$(".slide1").addClass("active");
+			
+			$(".slide1 div").html(text);
+			hideSlide($(".slide2"));
+			showSlide($(".slide1"));			
+		}
+	}
+	
+	function hideSlide(slide){
+		console.log("Hide slide");
+		slide.css("zIndex", "1");
+		
+		slide.animate({
+			left: 0-$(window).width()+20, //neu
+			opacity: 1
+		}, 600, function(){ 
+			slide.css({"zIndex": 1, "left": $(window).width()+20});
+		});
+	}
+	
+	function showSlide(slide){
+		console.log("Show slide");
+		slide.css("zIndex", "2");
+		
+		slide.animate({
+			left: "0",
+		}, 600, function(){ 
+			//nix
+		});
+	}
+	
+	window.self.setFontSize = function setFontSize(size){
+		$('.slide').css("fontSize", size+"px");
+	}
+	
+	window.self.setFontFamily = function setFontFamily(name){
+		$('.slide').css("fontFamily", name);
+	}
+	
+	$(window.self).unload(function(event) {
+		window.opener.stop();
+	});
+});
+		
+		</script>
+	</head>
+<body>
+<div class="slide slide1"><div>Folie 1</div></div>
+<div class="slide slide2 active"><div>Folie 2</div></div>
+</body>
+</html>
+		
