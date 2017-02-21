@@ -1,0 +1,8 @@
+InfiniteSlides: V. 1.0.
+Build: 2013/03/28
+License: Namensnennung – Weitergabe unter gleichen Bedingungen 3.0 Deutschland (CC BY-SA 3.0 DE)
+Author: Jumax - Adrian Jagusch und Pascal Wagler GBR, www.jumax.net
+
+
+===README===
+http://jumax.net/infiniteslides
